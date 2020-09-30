@@ -6,6 +6,7 @@ public class Cliente {
 	private Trabajo trabajo;
 	//falta hacer constructor
 	
+	
 	public int getPresupuesto() {
 		return presupuesto;
 	}
