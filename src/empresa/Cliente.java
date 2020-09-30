@@ -4,7 +4,6 @@ public class Cliente {
 
 	private int presupuesto;
 	private Trabajo trabajo;
-	//falta hacer constructor
 
 	public Cliente(Trabajo trabajo, int presupuesto){
 		this.presupuesto = presupuesto;
