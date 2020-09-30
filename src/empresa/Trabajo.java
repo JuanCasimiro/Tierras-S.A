@@ -7,7 +7,6 @@ public class Trabajo {
 	private int presupuesto;
 	private int costo;
 	private boolean estaBienRealizado;
-	private boolean trabajoterminado;
 	private Empleado[] trabajadores;
 	//constructor
 	public Trabajo(int horascam, int horasmaq, int presu) {
@@ -16,7 +15,6 @@ public class Trabajo {
 		presupuesto = presu;
 		costo = 0;
 		estaBienRealizado = false;
-		trabajoterminado = false;
 		trabajadores = null;
 	}
 	public Empleado[] getTrabajadores() {
