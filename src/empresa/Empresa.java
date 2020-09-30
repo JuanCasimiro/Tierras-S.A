@@ -1,12 +1,15 @@
 package empresa;
 
+import java.util.List;
+
 public class Empresa {
 //posible lista in de pesos para tratarlo como objeto al dinero
 	private String nombre;
 	private int valorHoraMaquina;
 	private int valorHoraCamion;
-	private Maquinista[] maquinistasdisponibles;
-	private Camionero[] camionerosdisponibles;
+	//private Maquinista[] maquinistasdisponibles;
+	List<Camionero> camionerosdisponibles;
+	List<Maquinista> maquinistasdisponibles;
 	private int dinero;
 	private Duenio duenio;
 	//constructor
@@ -16,12 +19,22 @@ public class Empresa {
 		this.nombre = nom;
 		this.dinero = 0;
 		this.duenio = duenio;
+		this.camionerosdisponibles = null;
+		this.maquinistasdisponibles = null;
 	}
 	//setters
+	public void contratar(Empleado e) {
+		if (e instanceof Maquinista) {
+			maquinistasdisponibles.add((Maquinista) e);
+		}
+		if (e instanceof Camionero) {
+			camionerosdisponibles.add((Camionero) e);
+		}
+	}
 	public void recibirPago(Trabajo t) {
 		this.dinero += t.getCosto();
 		this.pagarA(t.getTrabajadores());
-		this.duenio.cobrar();
+		this.duenio.cobrar();S
 	}
 	//getters
 	public int valorHoraMaquina() {
@@ -56,7 +69,6 @@ public class Empresa {
 	}
 	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
 	private void pagarA(Empleado[] trabajadores) {
-		trabajadores.map({trabajador => trabajador.cobrar});
 		
 	}
 	public void transferirA(Empleado persona,int total) {
