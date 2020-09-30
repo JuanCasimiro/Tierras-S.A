@@ -4,7 +4,6 @@ public class Trabajo {
 	
 	private int cantidadHorasMaquina;
 	private int cantidadHorasCamion;
-	private int presupuesto;
 	private int costo;
 	private boolean estaBienRealizado;
 	private Empleado[] trabajadores;
@@ -12,7 +11,6 @@ public class Trabajo {
 	public Trabajo(int horascam, int horasmaq, int presu) {
 		cantidadHorasMaquina = horasmaq;
 		cantidadHorasCamion = horascam;
-		presupuesto = presu;
 		costo = 0;
 		estaBienRealizado = false;
 		trabajadores = null;

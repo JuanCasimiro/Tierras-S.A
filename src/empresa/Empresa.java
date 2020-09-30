@@ -10,12 +10,12 @@ public class Empresa {
 	private int dinero;
 	private Duenio duenio;
 	//constructor
-	public Empresa(String nom, Duenio dueño, int hsmaquina, int hscamion) {
+	public Empresa(String nom, Duenio duenio, int hsmaquina, int hscamion) {
 		this.valorHoraMaquina = hsmaquina;
 		this.valorHoraCamion = hscamion;
 		this.nombre = nom;
 		this.dinero = 0;
-		this.duenio = dueño;
+		this.duenio = duenio;
 	}
 	//setters
 	public void recibirPago(Trabajo t) {
