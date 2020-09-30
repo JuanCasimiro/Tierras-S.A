@@ -8,7 +8,6 @@ public class Empresa {
 	private String nombre;
 	private int valorHoraMaquina;
 	private int valorHoraCamion;
-	//private Maquinista[] maquinistasdisponibles;
 	List<Camionero> camionerosdisponibles;
 	List<Maquinista> maquinistasdisponibles;
 	private int dinero;

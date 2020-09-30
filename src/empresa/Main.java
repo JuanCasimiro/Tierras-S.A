@@ -10,5 +10,12 @@ public class Main {
 		Duenio valen = new Duenio("valen");
 		Empresa volpiSA = new Empresa("volpi",valen, 200, 100);
 		
+		//la empresa contrata a sus empleados 
+		volpiSA.contratar(guillermo);
+		volpiSA.contratar(pepe);
+		
+		juan.contratarEmpresa(volpiSA);
+		
+		
 	}
 }
