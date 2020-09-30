@@ -68,13 +68,6 @@ public class Empresa {
 			(this.duenio).revisarTrabajo(t);
 			
 	}
-	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
-
-
-
-	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
-	
-	
 	
 	private void pagarA(Empleado[] empleados) {
 		for(int i = 0; i < empleados.length; i++){
