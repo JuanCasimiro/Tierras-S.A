@@ -56,7 +56,7 @@ public class Empresa {
 	}
 	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
 	private void pagarA(Empleado[] trabajadores) {
-		// empleado.cobrar
+		trabajadores.map({trabajador => trabajador.cobrar});
 		
 	}
 	public void transferirA(Empleado persona,int total) {
