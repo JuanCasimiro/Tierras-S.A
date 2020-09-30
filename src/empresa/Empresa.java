@@ -68,7 +68,14 @@ public class Empresa {
 			
 	}
 	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
+<<<<<<< HEAD
 	private void pagarA(Empleado[] trabajadores) {
+=======
+	private void pagarA(ArrayList<Empleado> trabajadores) {
+		for(int i = 0; i < trabajadores.size(); i++){
+			trabajadores[i].cobrar;
+		}
+>>>>>>> e25d0775f95702cbed13fa9d768516512bbc2fd2
 		
 	}
 	public void transferirA(Empleado persona,int total) {
