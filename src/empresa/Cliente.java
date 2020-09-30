@@ -21,6 +21,7 @@ public class Cliente {
 
 	//pagar
 	private void pagar(Empresa e, Trabajo t) {
+		this.presupuesto -= t.getCosto();
 		e.recibirPago(t);
 	}
 	//ofrecer trabajo el presupuesto menor gana (paja implementarlo)

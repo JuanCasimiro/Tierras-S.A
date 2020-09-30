@@ -47,7 +47,6 @@ public class Empresa {
 	}
 	public void realizarTrabajo (Trabajo t) {
 			
-			this.hacerPresupuesto(t);
 			Empleado camionero = asignarEmpleado("Camionero");
 			Empleado maquinista = asignarEmpleado("Maquinista");
 			camionero.trabajar(t);
@@ -60,8 +59,8 @@ public class Empresa {
 		// empleado.cobrar
 		
 	}
-	public void transferirA(Empleado e,int total) {
+	public void transferirA(Empleado persona,int total) {
 		this.dinero -= total;
-		e.recibirDinero(total);
+		persona.recibirDinero(total);
 	}
 }
