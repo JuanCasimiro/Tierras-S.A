@@ -1,5 +1,6 @@
 package empresa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Empresa {
@@ -34,7 +35,7 @@ public class Empresa {
 	public void recibirPago(Trabajo t) {
 		this.dinero += t.getCosto();
 		this.pagarA(t.getTrabajadores());
-		this.duenio.cobrar();S
+		this.duenio.cobrar();
 	}
 	//getters
 	public int valorHoraMaquina() {
@@ -48,9 +49,9 @@ public class Empresa {
 	private Empleado asignarEmpleado(String t) {
 		Empleado empleado = null;
 		if(t == "Maquinista") { 
-			empleado = maquinistasdisponibles[0];
+			empleado = maquinistasdisponibles.get(0);
 		}if (t == "Camionero") {
-			empleado = camionerosdisponibles[0];
+			empleado = camionerosdisponibles.get(0);
 		}
 		return empleado;
 	}
@@ -68,14 +69,14 @@ public class Empresa {
 			
 	}
 	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
-<<<<<<< HEAD
-	private void pagarA(Empleado[] trabajadores) {
-=======
-	private void pagarA(ArrayList<Empleado> trabajadores) {
-		for(int i = 0; i < trabajadores.size(); i++){
-			trabajadores[i].cobrar;
+
+
+
+	private void pagarA(Empleado[] empleados) {
+		for(int i = 0; i < empleados.length; i++){
+			empleados[i].cobrar();
 		}
->>>>>>> e25d0775f95702cbed13fa9d768516512bbc2fd2
+
 		
 	}
 	public void transferirA(Empleado persona,int total) {
