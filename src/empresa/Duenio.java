@@ -1,8 +1,8 @@
 package empresa;
 
-public class Dueño extends Empleado{
+public class Duenio extends Empleado{
 	private int dineroaretirar; 
-	public Dueño(String nom) {
+	public Duenio(String nom) {
 		super(nom);
 		
 	}

@@ -7,7 +7,7 @@ public class Main {
 		Camionero pepe = new Camionero("pepe");
 		Cliente juan = new Cliente();
 		Trabajo trabajo = new Trabajo(10, 20, 100000);
-		Dueño valen = new Dueño("valen");
+		Duenio valen = new Duenio("valen");
 		Empresa volpiSA = new Empresa("volpi",valen, 200, 100);
 		
 	}

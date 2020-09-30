@@ -8,20 +8,20 @@ public class Empresa {
 	private Maquinista[] maquinistasdisponibles;
 	private Camionero[] camionerosdisponibles;
 	private int dinero;
-	private Dueño dueño;
+	private Duenio duenio;
 	//constructor
-	public Empresa(String nom, Dueño dueño, int hsmaquina, int hscamion) {
+	public Empresa(String nom, Duenio dueño, int hsmaquina, int hscamion) {
 		this.valorHoraMaquina = hsmaquina;
 		this.valorHoraCamion = hscamion;
 		this.nombre = nom;
 		this.dinero = 0;
-		this.dueño = dueño;
+		this.duenio = dueño;
 	}
 	//setters
 	public void recibirPago(Trabajo t) {
 		this.dinero += t.getCosto();
 		this.pagarA(t.getTrabajadores());
-		this.dueño.cobrar();
+		this.duenio.cobrar();
 	}
 	//getters
 	public int valorHoraMaquina() {
@@ -52,7 +52,7 @@ public class Empresa {
 			Empleado maquinista = asignarEmpleado("Maquinista");
 			camionero.trabajar(t);
 			maquinista.trabajar(t);
-			(this.dueño).revisarTrabajo(t);
+			(this.duenio).revisarTrabajo(t);
 			
 	}
 	// tranferir sea priv y empleado con metodo que diga sueldo pendiente
