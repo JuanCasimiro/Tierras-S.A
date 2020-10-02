@@ -16,6 +16,25 @@ public class Main {
 		
 		juan.contratarEmpresa(volpiSA);
 		
+		//crear nuevo maquinista
+		
+		//crear nuevo camionero
+		
+		//crear duenio		
+		
+		//crear cliente
+		
+		//crear trabajo 
+		
+		//asignar trabajo al cliente
+		
+		//crear empresa 
+		
+		//asignar dueño a empresa
+		
+		//asignar nuevos empleados a empresa
+		
+		
 		
 	}
 }
