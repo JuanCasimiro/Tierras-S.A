@@ -45,7 +45,7 @@ public class Cliente {
 			e.realizarTrabajo(t);
 			if (t.estaBienRealizado()) {
 				this.pagar(e, t);
-			}
+			}//else Exception  "no posee suficiente dinero"
 		}
 	}
 }

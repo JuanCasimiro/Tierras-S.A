@@ -33,7 +33,7 @@ public class Maquinista extends Empleado{
 			Empresa empresa = this.getEmpresa();
 			int totalACobrar = horastrabajadas * (empresa.valorHoraMaquina() / 5); 
 			empresa.transferirA(this, totalACobrar);
-		}
+		}//else Exception  "no posee suficientes horas para cobrar"
 	}
 	
 }
