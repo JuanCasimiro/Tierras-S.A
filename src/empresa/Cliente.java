@@ -24,27 +24,27 @@ public class Cliente {
 	}
 
 	//pagar
-	private void pagar(Empresa e, Trabajo t) {
-		this.presupuesto -= t.getCosto();
-		e.recibirPago(t);
+	private void pagar(Empresa empresa, Trabajo trabajo) {
+		this.presupuesto -= trabajo.getCosto();
+		empresa.recibirPago(trabajo);
 	}
 	
 	//pedir presupuesto
-	public void pedirPresupuesto(Empresa e) {
-		e.hacerPresupuesto(trabajo);
+	public void pedirPresupuesto(Empresa empresa) {
+		empresa.hacerPresupuesto(trabajo);
 	}
 	//verificar que posee suficiente dinero
-	private boolean puedePagarlo(Empresa e) {
-		this.pedirPresupuesto(e);
+	private boolean puedePagarlo(Empresa empresa) {
+		this.pedirPresupuesto(empresa);
 		return (this.presupuesto >= (this.trabajo).getCosto());
 	}
 	//contratar empresa
-	public void contratarEmpresa(Empresa e) {
+	public void contratarEmpresa(Empresa empresa) {
 		Trabajo t = trabajo;
-		if(this.puedePagarlo(e)) {
-			e.realizarTrabajo(t);
+		if(this.puedePagarlo(empresa)) {
+			empresa.realizarTrabajo(t);
 			if (t.estaBienRealizado()) {
-				this.pagar(e, t);
+				this.pagar(empresa, t);
 			}//else Exception  "no posee suficiente dinero"
 		}
 	}

@@ -1,7 +1,7 @@
 package empresa;
 
 public class Main {
-	public static Maquinista main(String[]args) {
+	public static void main(String[]args) {
 		
 		Maquinista guillermo = new Maquinista("guillermo");
 		Camionero pepe = new Camionero("pepe");
@@ -16,31 +16,33 @@ public class Main {
 		
 		juan.contratarEmpresa(volpiSA);
 		
-		//crear nuevo maquinista
-		public Maquinista crearMaquinista(String nom){
-			Maquinista maquinista = new Maquinista(nom);
-			return maquinista;
-		}
-		
-		//crear nuevo camionero
-		public crearCamionero(String nom){
-			Maquinista maquinista = new Maquinista(nom);
-		}		
-		//crear duenio		
-		
-		//crear cliente
-		
-		//crear trabajo 
-		
-		//asignar trabajo al cliente
-		
-		//crear empresa 
-		
-		//asignar dueño a empresa
-		
-		//asignar nuevos empleados a empresa
-		
-		
+	
+	}
+	//crear nuevo maquinista
+	public Maquinista crearMaquinista(String nom){
+		return new Maquinista(nom);
 		
 	}
+	
+	//crear nuevo camionero
+	public Camionero crearCamionero(String nom){
+		return new Camionero(nom);
+	
+	}		
+	//crear duenio		
+	
+	//crear cliente
+	
+	//crear trabajo 
+	
+	//asignar trabajo al cliente
+	
+	//crear empresa 
+	
+	//asignar dueño a empresa
+	
+	//asignar nuevos empleados a empresa
+	
+	
+
 }

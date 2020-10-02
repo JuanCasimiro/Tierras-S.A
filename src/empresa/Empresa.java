@@ -1,6 +1,7 @@
 package empresa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Empresa {
@@ -45,38 +46,46 @@ public class Empresa {
 	}
 	//methods
 	//pagar a los empleados se le pagar 100$ menos de lo que se cobra la hora, la cantidad d horas se revisa luego de cada trabajo
-	private Empleado asignarEmpleado(String t) {
+	private Empleado asignarEmpleado(String clase) {
 		Empleado empleado = null;
-		if(t == "Maquinista") { 
+		if(clase.equals("Maquinista")) { 
 			empleado = maquinistasdisponibles.get(0);
-		}if (t == "Camionero") {
+		}else{if (clase.equals("Camionero")) {
 			empleado = camionerosdisponibles.get(0);
+		}else throw new RuntimeException("tipo de empleado no valido");
 		}
 		return empleado;
 	}
-	public void hacerPresupuesto(Trabajo t) {
-		int costo = t.getCantidadHorasCamion() * this.valorHoraCamion() + t.getCantidadHorasMaquina() * this.valorHoraMaquina();
-		t.setCosto(costo);
+	public void hacerPresupuesto(Trabajo trabajo) {
+		int costo = trabajo.getCantidadHorasCamion() * this.valorHoraCamion() + trabajo.getCantidadHorasMaquina() * this.valorHoraMaquina();
+		trabajo.setCosto(costo);
 	}
-	public void realizarTrabajo (Trabajo t) {
+	public void realizarTrabajo (Trabajo trabajo) {
 			
 			Empleado camionero = asignarEmpleado("Camionero");
 			Empleado maquinista = asignarEmpleado("Maquinista");
-			camionero.trabajar(t);
-			maquinista.trabajar(t);
-			(this.duenio).revisarTrabajo(t);
+			camionero.trabajar(trabajo);
+			maquinista.trabajar(trabajo);
+			(this.duenio).revisarTrabajo(trabajo);
 			
 	}
 	
 	private void pagarA(Empleado[] empleados) {
-		for(int i = 0; i < empleados.length; i++){
-			empleados[i].cobrar();
-		}
-
+		List<Empleado> empleaos = Arrays.asList(empleados);
+		empleaos.forEach(empleado -> empleado.cobrar());
 		
 	}
 	public void transferirA(Empleado persona,int total) {
 		this.dinero -= total;
 		persona.recibirDinero(total);
+	}
+	public int calculoTotalACobrar(Empleado empleado) {
+		if (empleado instanceof Maquinista) {
+			return empleado.getHorastrabajadas() * (this.valorHoraMaquina() / 5);
+		}
+		if (empleado instanceof Camionero) {
+			return empleado.getHorastrabajadas() * (this.valorHoraCamion() / 5);
+		}
+		return 0;
 	}
 }

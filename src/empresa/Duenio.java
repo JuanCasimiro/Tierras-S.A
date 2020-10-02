@@ -17,14 +17,14 @@ public class Duenio extends Empleado{
 		}
 	}
 	@Override
-	public void trabajar(Trabajo t) {
-		t.setCantidadHorasMaquina(0);
-		t.setEstaBienRealizado(true);
+	public void trabajar(Trabajo trabajo) {
+		trabajo.setCantidadHorasMaquina(0);
+		trabajo.setEstaBienRealizado(true);
 	}
-	public void revisarTrabajo(Trabajo t) {
-		this.dineroaretirar = (t.getCosto()/3);
-		if(!(t.estaBienRealizado())) {
-			this.trabajar(t);
+	public void revisarTrabajo(Trabajo trabajo) {
+		this.dineroaretirar = (trabajo.getCosto()/3);
+		if(!(trabajo.estaBienRealizado())) {
+			this.trabajar(trabajo);
 			this.sumarHoras(5);
 		}
 	}

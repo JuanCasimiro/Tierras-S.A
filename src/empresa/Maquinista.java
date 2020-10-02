@@ -6,19 +6,20 @@ public class Maquinista extends Empleado{
 		super(nom);
 	}
 	@Override
-	public void trabajar(Trabajo t) {
+	public void trabajar(Trabajo trabajo) {
 		
-		int cantidadHorasMaquina = t.getCantidadHorasMaquina();
+		int cantidadHorasMaquina = trabajo.getCantidadHorasMaquina();
 		if(cantidadHorasMaquina >= 30) {
 			//el empleado se cansa y hace algo mal, por ende entre el trabajo aun le faltan 5 horas por lo que rompio
 			//esta horas se le descuentan de las pendientes a cobrar
-			t.setCantidadHorasMaquina(5);
+			System.out.print("el maquinista se confundio y rompio algo aun quedan 5 horas de trabajo");
+			trabajo.setCantidadHorasMaquina(5);
 			this.sumarHoras(cantidadHorasMaquina - 5);
-			t.setEstaBienRealizado(false);
+			trabajo.setEstaBienRealizado(false);
 		}else {
-			t.setCantidadHorasMaquina(0);
+			trabajo.setCantidadHorasMaquina(0);
 			this.sumarHoras(cantidadHorasMaquina);
-			t.setEstaBienRealizado(true);
+			trabajo.setEstaBienRealizado(true);
 		}
 		
 		
@@ -31,9 +32,11 @@ public class Maquinista extends Empleado{
 		int horastrabajadas = this.getHorastrabajadas();
 		if(horastrabajadas >= 100) {
 			Empresa empresa = this.getEmpresa();
-			int totalACobrar = horastrabajadas * (empresa.valorHoraMaquina() / 5); 
+			//calculo a empresa
+			int totalACobrar = empresa.calculoTotalACobrar(this); 
 			empresa.transferirA(this, totalACobrar);
-		}//else Exception  "no posee suficientes horas para cobrar"
+		}else throw new RuntimeException("no posee suficientes horas para cobrar");
 	}
+
 	
 }

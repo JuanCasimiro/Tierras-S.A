@@ -6,10 +6,10 @@ public class Camionero extends Empleado{
 		super(nom);
 	}
 	@Override
-	public void trabajar(Trabajo t) {
+	public void trabajar(Trabajo trabajo) {
 		
-		this.sumarHoras(t.getCantidadHorasCamion());
-		t.setCantidadHorasCamion(0);
+		this.sumarHoras(trabajo.getCantidadHorasCamion());
+		trabajo.setCantidadHorasCamion(0);
 		System.out.print(this.getNombre() + " usa el camion");
 	}
 	@Override
@@ -19,6 +19,6 @@ public class Camionero extends Empleado{
 			Empresa empresa = this.getEmpresa();
 			int totalACobrar = horastrabajadas * (empresa.valorHoraCamion() / 5); 
 			empresa.transferirA(this, totalACobrar);
-		}//else Exception  "no posee suficientes horas para cobrar"
+		}else throw new RuntimeException("no posee suficientes horas para cobrar");
 	}
 }
