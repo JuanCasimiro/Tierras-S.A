@@ -41,11 +41,13 @@ public class Cliente {
 	//contratar empresa
 	public void contratarEmpresa(Empresa empresa) {
 		Trabajo t = trabajo;
-		if(this.puedePagarlo(empresa)) {
-			empresa.realizarTrabajo(t);
-			if (t.estaBienRealizado()) {
-				this.pagar(empresa, t);
-			}//else Exception  "no posee suficiente dinero"
-		}
-	}
+		if(!(t.equals(null))) {
+			if(this.puedePagarlo(empresa)) {
+				empresa.realizarTrabajo(t);
+				if (t.estaBienRealizado()) {
+					this.pagar(empresa, t);
+				}
+			}else throw new RuntimeException("no posee suficiente dinero para pagar el proyecto");
+		}else throw new RuntimeException("no posee un trabajo para realizar");
+	}	
 }
