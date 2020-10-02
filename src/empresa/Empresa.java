@@ -1,6 +1,5 @@
 package empresa;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,11 +25,15 @@ public class Empresa {
 	//setters
 	public void contratar(Empleado e) {
 		if (e instanceof Maquinista) {
+			if(!(maquinistasdisponibles.isEmpty())) {
 			maquinistasdisponibles.add((Maquinista) e);
+			} else throw new RuntimeException("la empresa no posee maquinistas para realizar el trabajo");
 		}
 		if (e instanceof Camionero) {
+			if(!(camionerosdisponibles.isEmpty())) {
 			camionerosdisponibles.add((Camionero) e);
-		}
+			}
+		} else throw new RuntimeException("la empresa no posee maquinistas para realizar el trabajo");
 	}
 	public void recibirPago(Trabajo t) {
 		this.dinero += t.getCosto();

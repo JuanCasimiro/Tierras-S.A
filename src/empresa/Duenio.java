@@ -6,7 +6,6 @@ public class Duenio extends Empleado{
 		super(nom);
 		
 	}
-	@Override
 	public void cobrar() {
 		int horastrabajadas = this.getHorastrabajadas();
 		if(horastrabajadas >= 100) {
@@ -16,7 +15,6 @@ public class Duenio extends Empleado{
 			empresa.transferirA(this, totalACobrar);	
 		}
 	}
-	@Override
 	public void trabajar(Trabajo trabajo) {
 		trabajo.setCantidadHorasMaquina(0);
 		trabajo.setEstaBienRealizado(true);

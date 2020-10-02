@@ -37,12 +37,6 @@ public abstract class Empleado {
 		this.horastrabajadas += horastrabajadas;
 	}
 	//methods
-	public void trabajar(Trabajo t) {	
-
-	}
-	public void cobrar() {
-
-	}
-	
-
+	public abstract void trabajar(Trabajo t);
+	public abstract void cobrar();
 }
