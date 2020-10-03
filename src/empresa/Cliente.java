@@ -46,6 +46,7 @@ public class Cliente {
 				empresa.realizarTrabajo(t);
 				if (t.estaBienRealizado()) {
 					this.pagar(empresa, t);
+					this.trabajo = null;
 				}
 			}else throw new RuntimeException("no posee suficiente dinero para pagar el proyecto");
 		}else throw new RuntimeException("no posee un trabajo para realizar");
