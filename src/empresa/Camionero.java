@@ -19,6 +19,7 @@ public class Camionero extends Empleado{
 			Empresa empresa = this.getEmpresa();
 			int totalACobrar = horastrabajadas * (empresa.valorHoraCamion() / 5); 
 			empresa.transferirA(this, totalACobrar);
+			this.setHorastrabajadas(0);
 		}else throw new RuntimeException("no posee suficientes horas para cobrar");
 	}
 }

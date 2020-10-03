@@ -27,6 +27,9 @@ public abstract class Empleado {
 		return horastrabajadas;
 	}
 	//setters
+	public void setHorastrabajadas(int cantidad) {
+		this.horastrabajadas = cantidad;
+	}	
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}

@@ -35,6 +35,7 @@ public class Maquinista extends Empleado{
 			//calculo a empresa
 			int totalACobrar = empresa.calculoTotalACobrar(this); 
 			empresa.transferirA(this, totalACobrar);
+			this.setHorastrabajadas(0);
 		}else throw new RuntimeException("no posee suficientes horas para cobrar");
 	}
 
