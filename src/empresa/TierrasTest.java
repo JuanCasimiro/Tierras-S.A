@@ -44,7 +44,11 @@ public class TierrasTest {
 	
 	//empresa tiene camioneros
 	@Test
-	public void () {}*/
+	public void () {}
+	//cliente contrata empresa con el presupuesto necesario
+	@Test
+	public void () {}
+	*/
 	//trabajo de 30 o mas hora mal echo por el maquinista
 	@Test
 	public void trabajoMalHechoPorMasDe30Horas () {
@@ -85,12 +89,6 @@ public class TierrasTest {
 	@Test
 	public void () {}
 	//empresa tranfiere a empleados
-	@Test
-	public void () {}
-	//cliente contrata empresa sin el presupuesto necesario
-	@Test
-	public void () {}
-	//cliente contrata empresa con el presupuesto necesario
 	@Test
 	public void () {}
 	//duenio revisa y termina el trabajo

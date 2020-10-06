@@ -2,6 +2,7 @@ package empresa;
 
 public class Duenio extends Empleado{
 	private int dineroARetirar; 
+	
 	public Duenio(String nom) {
 		super(nom);
 		this.dineroARetirar = 0;

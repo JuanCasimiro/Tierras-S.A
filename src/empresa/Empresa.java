@@ -20,6 +20,7 @@ public class Empresa {
 		this.nombre = nom;
 		this.dinero = 0;
 		this.duenio = duenio;
+		duenio.setEmpresa(this);
 	}
 	//setters
 	public void contratar(Empleado empleado) {
