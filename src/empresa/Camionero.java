@@ -22,7 +22,7 @@ public class Camionero extends Empleado{
 			Empresa empresa = this.getEmpresa();
 			int totalACobrar = empresa.calculoTotalACobrar(this); 
 			empresa.transferirA(this, totalACobrar);
-			System.out.print(this.getNombre() + " cobro");
+			System.out.println(this.getNombre() + " cobro");
 			this.setHorastrabajadas(0);
 		}else System.out.println(this.getNombre() + " no posee suficientes horas para cobrar");
 	}
