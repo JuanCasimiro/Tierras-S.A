@@ -1,27 +1,27 @@
 package empresa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trabajo {
 	
 	private int cantidadHorasMaquina;
 	private int cantidadHorasCamion;
 	private int costo;
 	private boolean estaBienRealizado;
-	private Empleado[] trabajadores;
+	private List<Empleado> trabajadores = new ArrayList<Empleado>();
 	//constructor
-	public Trabajo(int horascam, int horasmaq, int presu) {
+	public Trabajo(int horascam, int horasmaq) {
 		cantidadHorasMaquina = horasmaq;
 		cantidadHorasCamion = horascam;
 		costo = 0;
 		estaBienRealizado = false;
-		trabajadores = null;
 	}
-	public Empleado[] getTrabajadores() {
-		return trabajadores;
-	}
-	public void setTrabajadores(Empleado[] trabajadores) {
-		this.trabajadores = trabajadores;
-	}
+
 	//Setters
+	public void setTrabajadores(Empleado trabajador) {
+		this.trabajadores.add(trabajador);
+	}
 
 	public void setCantidadHorasMaquina(int cantidadHorasMaquina) {
 		this.cantidadHorasMaquina = cantidadHorasMaquina;
@@ -34,6 +34,9 @@ public class Trabajo {
 		this.costo = costo;
 	}
 	//getters 
+	public List<Empleado> getTrabajadores() {
+		return trabajadores;
+	}
 	public boolean estaBienRealizado() {
 		return this.estaBienRealizado;
 	}

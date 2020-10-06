@@ -3,18 +3,22 @@ package empresa;
 public class Main {
 	public static void main(String[]args) {
 		
-		Maquinista guillermo = new Maquinista("guillermo");
 		Camionero pepe       = new Camionero("pepe");
-		Trabajo trabajo      = new Trabajo(10, 20, 100000);
-		Cliente juan         = new Cliente(trabajo, 200000);
+		Trabajo trabajo      = new Trabajo(10, 20);
+		Cliente juan         = new Cliente(trabajo, 100000);
 		Duenio valen         = new Duenio("valen");
 		Empresa volpiSA      = new Empresa("volpi",valen, 200, 100);
 		
 		//la empresa contrata a sus empleados 
-		volpiSA.contratar(guillermo);
+		volpiSA.contratar(new Maquinista("guillermo"));
 		volpiSA.contratar(pepe);
 		
-		juan.contratarEmpresa(volpiSA);
+		
+		try{
+			juan.contratarEmpresa(volpiSA);
+		}catch (RuntimeException e) {
+			System.out.print(e.getMessage());
+		}
 		
 	
 	}

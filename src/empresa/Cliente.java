@@ -26,6 +26,7 @@ public class Cliente {
 	//pagar
 	private void pagar(Empresa empresa, Trabajo trabajo) {
 		this.presupuesto -= trabajo.getCosto();
+		System.out.print("el cliente realiza el pago");
 		empresa.recibirPago(trabajo);
 	}
 	

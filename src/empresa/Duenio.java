@@ -1,18 +1,19 @@
 package empresa;
 
 public class Duenio extends Empleado{
-	private int dineroaretirar; 
+	private int dineroARetirar; 
 	public Duenio(String nom) {
 		super(nom);
-		
+		this.dineroARetirar = 0;
 	}
 	public void cobrar() {
-		int horastrabajadas = this.getHorastrabajadas();
-		if(horastrabajadas >= 100) {
+		int horasTrabajadas = this.getHorastrabajadas();
+		if(horasTrabajadas >= 100) {
 			Empresa empresa = this.getEmpresa();
-			int totalACobrar = horastrabajadas * (empresa.valorHoraMaquina() / 5); 
-			totalACobrar += dineroaretirar;
-			empresa.transferirA(this, totalACobrar);	
+			int totalACobrar = horasTrabajadas * (empresa.valorHoraMaquina() / 5); 
+			totalACobrar = this.dineroARetirar;
+			empresa.transferirA(this, totalACobrar);
+			this.dineroARetirar = 0;
 		}
 	}
 	public void trabajar(Trabajo trabajo) {
@@ -20,7 +21,7 @@ public class Duenio extends Empleado{
 		trabajo.setEstaBienRealizado(true);
 	}
 	public void revisarTrabajo(Trabajo trabajo) {
-		this.dineroaretirar = (trabajo.getCosto()/3);
+		this.dineroARetirar += (trabajo.getCosto()/3);
 		if(!(trabajo.estaBienRealizado())) {
 			this.trabajar(trabajo);
 			this.sumarHoras(5);
