@@ -9,10 +9,11 @@ public class Empresa {
 	private String nombre;
 	private int valorHoraMaquina;
 	private int valorHoraCamion;
-	List<Camionero> camionerosDisponibles = new ArrayList<Camionero>();
-	List<Maquinista> maquinistasDisponibles = new ArrayList<Maquinista>();
+	private List<Camionero> camionerosDisponibles;
+	private List<Maquinista> maquinistasDisponibles;
 	private int dinero;
 	private Duenio duenio;
+	
 	//constructor
 	public Empresa(String nom, Duenio duenio, int hsMaquina, int hsCamion) {
 		this.valorHoraMaquina = hsMaquina;
@@ -20,6 +21,8 @@ public class Empresa {
 		this.nombre = nom;
 		this.dinero = 0;
 		this.duenio = duenio;
+		camionerosDisponibles = new ArrayList<Camionero>();
+		maquinistasDisponibles = new ArrayList<Maquinista>();
 		duenio.setEmpresa(this);
 	}
 	//setters
@@ -39,8 +42,17 @@ public class Empresa {
 		this.duenio.cobrar();
 	}
 	//getters
+	public List<Camionero> getCamionerosDisponibles() {
+		return camionerosDisponibles;
+	}
+	public List<Maquinista> getMaquinistasDisponibles() {
+		return maquinistasDisponibles;
+	}
 	public int valorHoraMaquina() {
 		return valorHoraMaquina;
+	}
+	public int getDinero() {
+		return dinero;
 	}
 	public int valorHoraCamion() {
 		return valorHoraCamion;
@@ -50,11 +62,15 @@ public class Empresa {
 	private Empleado asignarEmpleado(String clase) {
 		Empleado empleado = null;
 		if(clase.equals("Maquinista")) { 
+			if (maquinistasDisponibles.isEmpty()) {throw new RuntimeException("no hay maquinistas disponibles");}
 			empleado = maquinistasDisponibles.get(0);
-		}else{if (clase.equals("Camionero")) {
-			empleado = camionerosDisponibles.get(0);
-		}else throw new RuntimeException("tipo de empleado no valido");
 		}
+		if (clase.equals("Camionero")) {
+			if (camionerosDisponibles.isEmpty()) {throw new RuntimeException("no hay camioneros disponibles");}
+			empleado = camionerosDisponibles.get(0);
+			
+		}else throw new RuntimeException("tipo de empleado no valido");
+		
 		return empleado;
 	}
 	public void hacerPresupuesto(Trabajo trabajo) {
@@ -67,7 +83,7 @@ public class Empresa {
 			Empleado maquinista = asignarEmpleado("Maquinista");
 			camionero.trabajar(trabajo);
 			maquinista.trabajar(trabajo);
-			(this.duenio).revisarTrabajo(trabajo);
+			(this.duenio).revisarTrabajo(trabajo); 
 			System.out.println("el trabajo esta realizado satisfactoriamente");
 			
 	}
@@ -81,7 +97,7 @@ public class Empresa {
 		persona.recibirDinero(total);
 	}
 	public int calculoTotalACobrar(Empleado empleado) {
-		if (empleado instanceof Maquinista) {
+		if (empleado instanceof Maquinista || empleado instanceof Duenio) {
 			int total = (empleado.getHorastrabajadas() * (this.valorHoraMaquina() / 5));
 			return total;
 		}

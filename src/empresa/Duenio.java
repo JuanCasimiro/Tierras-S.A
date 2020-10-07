@@ -2,7 +2,7 @@ package empresa;
 
 public class Duenio extends Empleado{
 	private int dineroARetirar; 
-	
+		
 	public Duenio(String nom) {
 		super(nom);
 		this.dineroARetirar = 0;
@@ -11,7 +11,7 @@ public class Duenio extends Empleado{
 		int horasTrabajadas = this.getHorastrabajadas();
 		if(horasTrabajadas >= 100) {
 			Empresa empresa = this.getEmpresa();
-			int totalACobrar = horasTrabajadas * (empresa.valorHoraMaquina() / 5); 
+			int totalACobrar = empresa.calculoTotalACobrar(this);
 			totalACobrar = this.dineroARetirar;
 			empresa.transferirA(this, totalACobrar);
 			this.dineroARetirar = 0;
