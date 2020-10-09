@@ -24,7 +24,6 @@ public class TierrasTest {
   
     	empresa.contratar(camionero);
     	empresa.contratar(maquinista);
-    	System.out.println("aa");
     }
  
 	@Test
@@ -118,18 +117,11 @@ public class TierrasTest {
 	cliente.pedirPresupuesto(empresa);
 	int dineroEsperado = cliente.getTrabajo().getCosto(); 
 	int dineroPrev = empresa.getDinero();
-	System.out.println(cliente.getTrabajo().getCosto() + " " + cliente.getTrabajo().getCantidadHorasCamion());
 	cliente.contratarEmpresa(empresa);
-	trabajo.setCantidadHorasCamion(100);
-	trabajo.setCantidadHorasMaquina(105);
-	camionero.trabajar(trabajo);
-	maquinista.trabajar(trabajo);
 	int dineroParaPagos = ((100*(100/5)) + (200/5)*100);
-	System.out.println(empresa.calculoTotalACobrar(camionero) + "||" +empresa.calculoTotalACobrar(maquinista));
 	dineroEsperado = dineroEsperado - dineroParaPagos;
 	int dineroPost = empresa.getDinero();
 	int dineroGanado = dineroPost - dineroPrev;
-	System.out.println(dineroParaPagos);
 	assertEquals(dineroEsperado, dineroGanado);
 	
 	}
