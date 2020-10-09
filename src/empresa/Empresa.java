@@ -2,6 +2,7 @@ package empresa;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class Empresa {
@@ -36,6 +37,15 @@ public class Empresa {
 			empleado.setEmpresa(this);
 		}
 	}
+	public void despedir(Empleado empleado) {
+		if (empleado instanceof Maquinista) {
+			maquinistasDisponibles.removeIf(x -> x.getNombre().equalsIgnoreCase(empleado.getNombre()));
+			}
+		
+		if (empleado instanceof Camionero) {
+			camionerosDisponibles.removeIf(x -> x.getNombre().equalsIgnoreCase(empleado.getNombre()));
+		}
+	}
 	public void recibirPago(Trabajo trabajo) {
 		this.dinero += trabajo.getCosto();
 		this.pagarA(trabajo.getTrabajadores());
@@ -59,7 +69,26 @@ public class Empresa {
 	}
 	//methods
 	//pagar a los empleados se le pagar 100$ menos de lo que se cobra la hora, la cantidad d horas se revisa luego de cada trabajo
-	private Empleado asignarEmpleado(String clase) {
+	//asignar los empleados ya los ingresa a la lista de quienes los trabajaron 
+	
+	private void asignarEmpleados(Trabajo trabajo) {
+		if(trabajo.getCantidadHorasCamion() > 0) {
+			if (camionerosDisponibles.isEmpty() ) {throw new RuntimeException("no hay camioneros disponibles");}
+			else {
+			Empleado empleado = camionerosDisponibles.get(0);
+			trabajo.setTrabajadores(empleado);
+			}
+		}
+		if(trabajo.getCantidadHorasMaquina() > 0) {
+			if (maquinistasDisponibles.isEmpty()) {throw new RuntimeException("no hay maquinistas disponibles");}
+			else {
+			Empleado empleado = maquinistasDisponibles.get(0);
+			trabajo.setTrabajadores(empleado);
+			}
+		}
+	}
+	
+	/*private Empleado asignarEmpleado(String clase) {
 		Empleado empleado = null;
 		if(clase.equals("Maquinista")) { 
 			if (maquinistasDisponibles.isEmpty()) {throw new RuntimeException("no hay maquinistas disponibles");}
@@ -72,20 +101,23 @@ public class Empresa {
 		}else throw new RuntimeException("tipo de empleado no valido");
 		
 		return empleado;
-	}
+	}*/
 	public void hacerPresupuesto(Trabajo trabajo) {
 		int costo = trabajo.getCantidadHorasCamion() * this.valorHoraCamion() + trabajo.getCantidadHorasMaquina() * this.valorHoraMaquina();
 		trabajo.setCosto(costo);
 	}
 	public void realizarTrabajo (Trabajo trabajo) {
-			
-			Empleado camionero = asignarEmpleado("Camionero");
-			Empleado maquinista = asignarEmpleado("Maquinista");
-			camionero.trabajar(trabajo);
-			maquinista.trabajar(trabajo);
+			asignarEmpleados(trabajo);
+			hacerQueLosEmpleadosTrabajen(trabajo);
+			//empleados.forEach(empleado -> empleado.trabajar(trabajo));
 			(this.duenio).revisarTrabajo(trabajo); 
 			System.out.println("el trabajo esta realizado satisfactoriamente");
 			
+	}
+	private void hacerQueLosEmpleadosTrabajen(Trabajo trabajo) {
+
+		trabajo.getTrabajadores().forEach(x -> x.trabajar(trabajo));
+
 	}
 	
 	private void pagarA(List<Empleado> empleados) {
@@ -103,7 +135,7 @@ public class Empresa {
 		}
 		if (empleado instanceof Camionero) {
 			
-			int total= (empleado.getHorastrabajadas() * (this.valorHoraMaquina() / 5));
+			int total= (empleado.getHorastrabajadas() * (this.valorHoraCamion() / 5));
 			return total;
 		}
 		return 0;

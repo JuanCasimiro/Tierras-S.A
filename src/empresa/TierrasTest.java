@@ -21,7 +21,7 @@ public class TierrasTest {
     	cliente     = new Cliente(trabajo, 10000000);
     	duenio      = new Duenio("valen");
     	empresa     = new Empresa("volpi",duenio, 200, 100);
-    	
+  
     	empresa.contratar(camionero);
     	empresa.contratar(maquinista);
     	System.out.println("aa");
@@ -40,24 +40,42 @@ public class TierrasTest {
 		};
 		
 	}
-	/*
-	//empresa tiene maquinistas
-	@Test
-	public void () {
-		
-	}
 	
-	//empresa tiene camioneros
+	//empresa no tiene maquinistas
 	@Test
-	public void () {
-	
+	public void contratanEmpresaSinMaquinista() {
+	try {
+		empresa.despedir(maquinista);
+		cliente.contratarEmpresa(empresa);
+		fail();
+	} catch (RuntimeException e) {
+		if(!(e.getMessage().matches("no hay maquinistas disponibles"))) {
+			fail();
+		}
+	}	
 	}
+
+	//empresa no tiene camioneros
+	@Test
+	public void contratanEmpresaSinCamionero() {
+	try {
+		empresa.despedir(camionero);
+		cliente.contratarEmpresa(empresa);
+		fail();
+	} catch (RuntimeException e) {
+		if(!(e.getMessage().matches("no hay camioneros disponibles"))) {
+			fail();
+		}
+	}	
+	}
+
 	//cliente contrata empresa con el presupuesto necesario
 	@Test
-	public void () {
-	
+	public void clienteContrataEmpresaConElPresupuesto() {
+		cliente.contratarEmpresa(empresa);
+		assertTrue(trabajo.estaBienRealizado());
 	}
-*/
+
 	//trabajo de 30 o mas hora mal echo por el maquinista
 	@Test
 	public void trabajoMalHechoPorMasDe30Horas () {
@@ -65,16 +83,21 @@ public class TierrasTest {
 	maquinista.trabajar(trabajo);
 	assertFalse(trabajo.estaBienRealizado());
 	}
-/*
+
 	//empleados reciben pagos
 	@Test
-	public void () {
-	
-	}*/
+	public void maquinistaCobra() {
+		trabajo.setCantidadHorasMaquina(106);
+		empresa.recibirPago(trabajo);
+	maquinista.trabajar(trabajo);
+	int esperado = empresa.calculoTotalACobrar(maquinista);
+	maquinista.cobrar();
+	int dinero =  (int) maquinista.getDinero();
+	assertEquals(esperado, dinero);
+	}
 	//empleados cobran y las horas de trabajo quedan en 0
 	@Test
 	public void despuesDeCobrarSeteaHorasA0() {
-	
 	trabajo.setCantidadHorasCamion(100);
 	camionero.trabajar(trabajo);
 	camionero.cobrar();
@@ -91,34 +114,64 @@ public class TierrasTest {
 	@Test
 	public void empresaRecibePagoPorTabajoDondeAmbosEmpleadosCobran() {
 	trabajo.setCantidadHorasCamion(100);
-	trabajo.setCantidadHorasMaquina(100);
+	trabajo.setCantidadHorasMaquina(105);
 	cliente.pedirPresupuesto(empresa);
 	int dineroEsperado = cliente.getTrabajo().getCosto(); 
 	int dineroPrev = empresa.getDinero();
 	System.out.println(cliente.getTrabajo().getCosto() + " " + cliente.getTrabajo().getCantidadHorasCamion());
 	cliente.contratarEmpresa(empresa);
-	int dineroParaPagos = (empresa.calculoTotalACobrar(camionero) + empresa.calculoTotalACobrar(maquinista) + empresa.calculoTotalACobrar(duenio));
+	trabajo.setCantidadHorasCamion(100);
+	trabajo.setCantidadHorasMaquina(105);
+	camionero.trabajar(trabajo);
+	maquinista.trabajar(trabajo);
+	int dineroParaPagos = ((100*(100/5)) + (200/5)*100);
+	System.out.println(empresa.calculoTotalACobrar(camionero) + "||" +empresa.calculoTotalACobrar(maquinista));
 	dineroEsperado = dineroEsperado - dineroParaPagos;
 	int dineroPost = empresa.getDinero();
 	int dineroGanado = dineroPost - dineroPrev;
+	System.out.println(dineroParaPagos);
 	assertEquals(dineroEsperado, dineroGanado);
 	
 	}
 	/*
 	//asignar empleados
 	@Test
-	public void () {}
+	public void () {
+	
+	}*/
 	//presupuestar trabajos
 	@Test
-	public void () {}
+	public void presupuestarTrabajo() {
+	cliente.pedirPresupuesto(empresa);
+	int esperado = trabajo.getCantidadHorasCamion()*100 + trabajo.getCantidadHorasMaquina()*200;
+	assertEquals(esperado,trabajo.getCosto());
+	
+	}/*
 	//empresa tranfiere a empleados
 	@Test
-	public void () {}
+	public void () {
+	
+	}
+	*/
 	//duenio revisa y termina el trabajo
 	@Test
-	public void () {}
+	public void duenioRevisaYEstaMal() {
+	trabajo.setCantidadHorasMaquina(35);
+	trabajo.setCantidadHorasCamion(0);
+	duenio.revisarTrabajo(trabajo);
+	int horas = duenio.getHorastrabajadas();
+	assertEquals(5, horas);
+	}
 	//dueño revisa el trabajo y esta todo bien
+
 	@Test
-	public void () {}
-*/	
+	public void duenioRevisaYEstaBien() {
+	trabajo.setCantidadHorasMaquina(10);
+	trabajo.setCantidadHorasCamion(0);
+	maquinista.trabajar(trabajo);
+	duenio.revisarTrabajo(trabajo);
+	int horas = duenio.getHorastrabajadas();
+	assertEquals(0, horas);
+	}
+	
 }

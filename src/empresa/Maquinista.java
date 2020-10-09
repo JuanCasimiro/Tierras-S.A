@@ -21,7 +21,6 @@ public class Maquinista extends Empleado{
 			this.sumarHoras(cantidadHorasMaquina);
 			trabajo.setEstaBienRealizado(true);
 		}
-		trabajo.setTrabajadores(this);
 		System.out.println(this.getNombre() + " usa la maquina");
 		
 	}	

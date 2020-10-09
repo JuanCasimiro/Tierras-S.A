@@ -5,7 +5,7 @@ public class Cliente {
 	private int presupuesto;
 	private Trabajo trabajo;
 
-	public Cliente(Trabajo trabajo, int presupuesto){
+	public Cliente(Trabajo trabajo, int presupuesto) {
 		this.presupuesto = presupuesto;
 		this.trabajo = trabajo;
 	} 

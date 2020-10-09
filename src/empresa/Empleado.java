@@ -2,7 +2,7 @@ package empresa;
 
 public abstract class Empleado {
 	private String nombre;
-	private float dinero;
+	private int dinero;
 	private Empresa empresa;
 	private int horasTrabajadas;
 	

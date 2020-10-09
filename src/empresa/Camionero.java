@@ -10,7 +10,6 @@ public class Camionero extends Empleado{
 		
 		this.sumarHoras(trabajo.getCantidadHorasCamion());
 		trabajo.setCantidadHorasCamion(0);
-		trabajo.setTrabajadores(this);
 		trabajo.setEstaBienRealizado(true);
 		System.out.println(this.getNombre() + " usa el camion");
 		

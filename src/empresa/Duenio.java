@@ -23,7 +23,7 @@ public class Duenio extends Empleado{
 	}
 	public void revisarTrabajo(Trabajo trabajo) {
 		this.dineroARetirar += (trabajo.getCosto()/3);
-		if(!(trabajo.estaBienRealizado())) {
+		if(trabajo.getCantidadHorasMaquina() > 0) {
 			this.trabajar(trabajo);
 			this.sumarHoras(5);
 		}
