@@ -15,8 +15,8 @@ public class TierrasTest {
 	Empresa empresa;
     @Before
 	public void before() {
-    	maquinista  = new Maquinista("guillermo");
-    	camionero   = new Camionero("pepe");
+    	maquinista  = new Maquinista("maquinista");
+    	camionero   = new Camionero("camionero");
     	trabajo     = new Trabajo(10, 10);
     	cliente     = new Cliente(trabajo, 10000000);
     	duenio      = new Duenio("valen");
@@ -125,12 +125,6 @@ public class TierrasTest {
 	assertEquals(dineroEsperado, dineroGanado);
 	
 	}
-	/*
-	//asignar empleados
-	@Test
-	public void () {
-	
-	}*/
 	//presupuestar trabajos
 	@Test
 	public void presupuestarTrabajo() {
@@ -138,13 +132,7 @@ public class TierrasTest {
 	int esperado = trabajo.getCantidadHorasCamion()*100 + trabajo.getCantidadHorasMaquina()*200;
 	assertEquals(esperado,trabajo.getCosto());
 	
-	}/*
-	//empresa tranfiere a empleados
-	@Test
-	public void () {
-	
 	}
-	*/
 	//duenio revisa y termina el trabajo
 	@Test
 	public void duenioRevisaYEstaMal() {
